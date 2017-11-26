@@ -7,14 +7,22 @@ class NegociacaoController {
 		
 		let $ = document.querySelector.bind(document);
 
-		this.inputData = $("#data");
-		this.inputQuantidade = $("#quantidade");
-		this.inputValor = $("#valor");
+		this._inputData = $("#data");
+		this._inputQuantidade = $("#quantidade");
+		this._inputValor = $("#valor");
 	}
 
 	adiciona(event){
 		event.preventDefault();
-		console.log(this.inputData.value);
+
+		//let data = new Date(this._inputData.value.split('-')); // O construtor de data aceita um array como valor
+		let data = new Date(this._inputData.value.replace(/-/g, ',')); // outra forma é dar um replace no hífen por virgula
+
+		let negociacao = new Negociacao(
+				data,
+				this._inputQuantidade.value,
+				this._inputValor.value
+				);
 
 	}
 
