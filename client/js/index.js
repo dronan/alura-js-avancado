@@ -32,3 +32,4 @@ document.querySelector(".form").addEventListener("submit", function(event){
 	campos[2].value = 0.0;
 
 })
+
