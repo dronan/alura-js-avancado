@@ -9,19 +9,19 @@ class Negociacao {
 
 	}
 
-	getVolume(){
+	get volume(){
 		return this._quantidade * this._valor;
 	}
 
-	getQuantidade(){
+	get quantidade(){
 		return _quantidade;
 	}
 
-	getDate(){
+	get data(){
 		return _data;
 	}
 
-	getValor(){
+	get valor(){
 		return _valor;
 	}
 }
