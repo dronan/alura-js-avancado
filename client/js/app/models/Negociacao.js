@@ -2,13 +2,26 @@ class Negociacao {
 
 	constructor(data, quantidade, valor) {
 
-		this.data = data;
-		this.quantidade = quantidade;
-		this.valor = valor;
+		// _atributo -> o underline diz que é um atributo privado
+		this._data = data;
+		this._quantidade = quantidade;
+		this._valor = valor;
 
 	}
 
-	obtemVolume(){
-		return this.quantidade * this.valor;
+	getVolume(){
+		return this._quantidade * this._valor;
+	}
+
+	getQuantidade(){
+		return _quantidade;
+	}
+
+	getDate(){
+		return _data;
+	}
+
+	getValor(){
+		return _valor;
 	}
 }
