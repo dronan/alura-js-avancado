@@ -7,6 +7,8 @@ class Negociacao {
 		this._quantidade = quantidade;
 		this._valor = valor;
 
+		Object.freeze(this); // asim não é possivel alterar a propriedade definida no construtor da classe
+
 	}
 
 	get volume(){
