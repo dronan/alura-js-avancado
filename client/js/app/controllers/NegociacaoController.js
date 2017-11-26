@@ -3,9 +3,19 @@ Comunicacoes entre o usuario e o modelo
 **/
 class NegociacaoController {
 
+	constructor() {
+		
+		let $ = document.querySelector.bind(document);
+
+		this.inputData = $("#data");
+		this.inputQuantidade = $("#quantidade");
+		this.inputValor = $("#valor");
+	}
+
 	adiciona(event){
 		event.preventDefault();
-		alert("controller");
+		console.log(this.inputData.value);
+
 	}
-	
+
 }
