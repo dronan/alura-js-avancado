@@ -23,7 +23,7 @@ class NegociacaoController {
 
 		let diaMesAno = DateHelper.dataParaTexto(negociacao.data);
 
-
+		console.log(diaMesAno);
 	}
 
 }
