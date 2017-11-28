@@ -33,3 +33,15 @@ document.querySelector(".form").addEventListener("submit", function(event){
 
 })
 
+/* 
+Spread Operator
+
+Unir 2 arrays:
+
+Ex:
+
+let lista1 = ['banana', 'laranja', 'mamão'];
+let lista2 = ['caju', 'tangerina', 'abacaxi'];
+
+lista1.push(...lista2); // resultado: ['banana', 'laranja', 'mamão', 'caju', 'tangerina', 'abacaxi'];
+*/
