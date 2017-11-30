@@ -14,7 +14,7 @@ class NegociacaoController {
 		this._listaNegociacoes = new ListaNegociacoes();
 		this._negociacoesView = new NegociacoesView($('#negociacoesView'));
 
-		this._negociacoesView.update();
+		this._negociacoesView.update(this._listaNegociacoes); // a view recebe o model para carregar a tabela
 
 	}
 
@@ -22,10 +22,12 @@ class NegociacaoController {
 		event.preventDefault();
 
 		this._listaNegociacoes.adiciona(this._criaNegociacao());
+
+		this._negociacoesView.update(this._listaNegociacoes); // a view recebe o model para carregar a tabela
 		
 		this._limpaFormulario();
 
-		console.log(this._listaNegociacoes.negociacoes);
+		//console.log(this._listaNegociacoes.negociacoes);
 	}
 
 	_criaNegociacao() {
