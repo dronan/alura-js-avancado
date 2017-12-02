@@ -1,7 +1,7 @@
-class NegociacoesView {
+class NegociacoesView extends View {
 
-    constructor(elemento){ // recebe a div que exibira o template
-        this._elemento = elemento;
+    constructor(elemento) {
+        super(elemento); // passa a responsabilidade para a view
     }
 
     _template(model) {
@@ -36,7 +36,5 @@ class NegociacoesView {
     }
 
 
-    update(model) {
-        this._elemento.innerHTML = this._template(model);
-    }
+
 }
