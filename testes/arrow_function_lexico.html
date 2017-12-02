@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<h1>TITULO</h1>
+	<p>PARAGRAFO</p>
+	<div>DADOS</div>
+
+	<script>
+        console.log(this); // é window
+        /*
+        // o this nesse caso é o elemento h1, p, div
+        let exibeConteudo = function() {
+            console.log(this);
+            alert(this.textContent);
+        };
+        */
+
+        // arrow function agora!
+        // neste caso é o contexto, window
+        let exibeConteudo = () =>  {
+        	console.log(this);
+        	alert(this.textContent);
+        };
+
+        $ = document.querySelector.bind(document);
+
+        $('h1').addEventListener('click', exibeConteudo);
+
+        $('p').addEventListener('click', exibeConteudo);
+
+        $('div').addEventListener('click', exibeConteudo);
+
+
+
+
+
+
+
+
+        class SistemaImpressao {
+
+        	constructor() {
+        		this._codigo = 2;
+        	}
+
+        	imprime(nomes) {
+
+        		// neste caso o contexto é window, e nao o controller
+        		/*
+        		nomes.forEach(function(nome) {
+        			console.log(this);
+        			console.log(`${this._codigo}: ${nome}`);
+        		});
+        		*/
+
+        		// corrigido com arrow function
+        		nomes.forEach(nome => {
+        			console.log(this);
+        			console.log(`${this._codigo}: ${nome}`);
+        		});
+        	}
+        }
+
+        let nomes = ['Flávio', 'Nico', 'Douglas'];
+        let si = new SistemaImpressao();
+        si.imprime(nomes);
+    </script>
+</body>
+</html>
