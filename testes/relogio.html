@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+        Um programador de Javascript decidiu criar uma abstração de um relógio em seu código, através da classe Relogio. A ideia é a seguinte: assim que ele instanciar essa classe, deve ser exibida no console a quantidade de segundos a partir da sua criação. Aprendemos que o constructor é chamado toda vez que instanciamos objetos de uma classe:
+
+	<script>
+
+class Relogio {
+
+    constructor() {
+        this._segundos = 0;
+        /*
+        setInterval(function () {
+            console.log(++this._segundos);
+          }, 1000);
+         */
+         //codigo corrigido:
+         setInterval(() => console.log(++this._segundos), 1000);
+
+    }
+
+    // outra forma valida, mas mais verbosa
+
+    /*
+    constructor() {
+
+        let self = this; // guardando o this que é a instância da classe `Relogio`
+        this._segundos = 0;
+
+        setInterval(function () {
+            console.log(++self._segundos); // acessando a variável self, que é a instância de `Relogio` 
+          }, 1000);
+
+    }
+    */
+
+}
+
+var relogio = new Relogio();
+    </script>
+</body>
+</html>
