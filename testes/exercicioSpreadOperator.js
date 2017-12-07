@@ -4,7 +4,7 @@ Spread Operator
 Unir 2 arrays:
 */
 
-let lista1 = ['banana', 'laranja', 'mamão', 'manga'];
+let lista1 = ['banana', 'laranja', 'mamão', 'manga', 'morango'];
 let lista2 = ['caju', 'tangerina', 'abacaxi'];
 
 lista1.push(...lista2); 
