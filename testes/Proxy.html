@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+	// Temos o seguinte objeto literal (aquele criado com chaves):
+
+	let funcionario = {email: 'abc@abc.com'};
+	
+	// Crie um proxy para este objeto, exibindo no console a mensagem "Armadilha aqui", toda vez que a propriedade email for lida.
+
+	let prx = new Proxy(funcionario, {
+		get(target, prop, receiver) {
+			//console.log("target", target);
+			//console.log("prop", prop);
+			//console.log("receiver", receiver);
+			console.log("Armadilha aqui")
+			return Reflect.get(target, prop, receiver);
+		}
+	});
+
+	console.log(prx.email);
+
+
+</script>
+
+</body>
+</html>
