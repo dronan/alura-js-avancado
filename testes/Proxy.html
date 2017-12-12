@@ -18,7 +18,7 @@
 			//console.log("prop", prop);
 			//console.log("receiver", receiver);
 			console.log("Armadilha aqui")
-			return Reflect.get(target, prop, receiver);
+			return `***${Reflect.get(target, prop, receiver)}***`
 		}
 	});
 
