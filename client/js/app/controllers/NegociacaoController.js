@@ -51,4 +51,34 @@ class NegociacaoController {
 		this._inputData.focus();
 	}
 
+	importaNegociacoes() {
+
+		let xhr = new XMLHttpRequest();
+		
+		xhr.open('GET', 'negociacoes/semana');
+
+		xhr.onreadystatechange = () => {
+
+			/**
+			readyState:
+				0: não iniciada
+				1: conexao estabelecida
+				2: requisção recebida
+				3: processando requisicao
+				4: recisicao concluida, resposta pronta, não necessariamente seja uma resposta valida, mas um erro de servidor
+			**/
+
+			if (xhr.readyState == 4) {
+				if (xhr.status == 200 ) {
+					console.log("Obtendo as informações do servidor");
+				} else {
+					console.log("Não foi possivel obter as informações do servidor");
+				}
+			}
+		};
+
+		xhr.send();
+
+	}
+
 }
