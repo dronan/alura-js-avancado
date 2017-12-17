@@ -62,7 +62,7 @@ class NegociacaoController {
 		])
 		.then(negociacoes => {
 			negociacoes
-			.reduce((arrayAchatado, array) => arrayAchatado.concat(array), [])
+			.reduce((arrayAchatado, array) => arrayAchatado.concat(array), []) // Une todos os arrays em um  unico
 			.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
 			this._mensagem.texto = "Negociacoes importadas com sucesso!";
 		})
