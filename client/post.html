@@ -27,15 +27,19 @@
         <button class="btn btn-primary" type="submit" onclick="sendPost(event)">Enviar dados para servidor</button>
     </form>
 
+    <script src="js/app/services/HttpService.js"></script>
+    
     <script>
 
         function sendPost(event) {
 
             event.preventDefault();
-
-            data = document.querySelector("#data");
-            quantidade = document.querySelector("#quantidade");
-            valor = document.querySelector("#valor");
+            
+            let $ = document.querySelector.bind(document);
+            
+            data = $("#data");
+            quantidade = $("#quantidade");
+            valor = $("#valor");
 
             let param = {
                 data:data.value,
@@ -43,31 +47,18 @@
                 valor:valor.value
             };
 
-            let xhr = new XMLHttpRequest();
-
-            xhr.open('POST', '/negociacoes', true);
-
-            xhr.setRequestHeader('Content-Type', 'application/json');
-
-            xhr.onreadystatechange = () => {
-
-                if (xhr.readyState == 4) {
-                    if (xhr.status = 200) {
-                        data.value = '';
-                        quantidade.value = 1;
-                        valor.value = 0.0;
-                        data.focus();
-                        console.log("Enviado!");
-                    } else {
-                        console.log("erro");
-                    }
-                }
+            new HttpService()
+                .post('/negociacoes', param)
+                .then(() => {
+                    data.value = '';
+                    quantidade.value = 1;
+                    valor.value = 0.0;
+                    data.focus();
+                    alert('Negociação enviada com sucesso');
+                })
+                .catch(erro => alert(`Não foi possível enviar a negociação: ${erro}`));
 
             };
-
-            xhr.send(JSON.stringify(param));
-
-        }
     </script>
 </body>
 </html>
