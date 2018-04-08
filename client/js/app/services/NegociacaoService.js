@@ -68,4 +68,17 @@ class NegociacaoService {
 		});
 	}
 
+	cadastra(negociacao){
+
+		return ConnectionFactory
+				.getConnection()
+				.then(conexao => new NegociacaoDao(conexao))
+				.then(dao => dao.adiciona(negociacao))
+				.then(() => "Negociação adicionada com sucesso!")
+				.catch(erro => {
+					throw new Error("Não foi possivel adicionar a negociação")
+				});
+
+	}
+
 }
