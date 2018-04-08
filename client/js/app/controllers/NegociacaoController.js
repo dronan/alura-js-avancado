@@ -33,11 +33,9 @@ class NegociacaoController {
 
 		this._service
 			.lista()
-			.then(negociacoes => {
-						negociacoes.forEach(negociacao => {
-							this._listaNegociacoes.adiciona(negociacao);
-						})
-					})
+			.then(negociacoes =>
+					negociacoes.forEach(negociacao => 
+						this._listaNegociacoes.adiciona(negociacao)))
 			.catch(erro => this._mensagem.texto = erro);
 
 			setInterval( () => {
@@ -108,10 +106,7 @@ class NegociacaoController {
 				.then( negociacoes => 
 					negociacoes.filter(negociacao => 
 						!this._listaNegociacoes.negociacoes.some(negociacaoExistente =>
-							JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente)
-						)
-					)
-				)
+							JSON.stringify(negociacao) == JSON.stringify(negociacaoExistente))))
 				.then(negociacoes => {
 					negociacoes
 					.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
