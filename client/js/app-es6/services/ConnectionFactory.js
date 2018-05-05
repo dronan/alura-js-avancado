@@ -1,69 +1,66 @@
-var ConnectionFactory = (function () {
-	
-	const stores = ['negociacoes'];
-	const version = 4;
-	const dbname = 'aluraframe';
-	
-	var connection = null;
-	var close = null;
+const stores = ['negociacoes'];
+const version = 4;
+const dbname = 'aluraframe';
 
-	return class ConnectionFactory {
+let connection = null;
+let close = null;
 
-		constructor() {
-			throw new Error ("Não é possivel instanciar esta classe");
-		}
+export class ConnectionFactory {
 
-		static getConnection() {
-			return new Promise((resolve, reject) => {
-				let openRequest = window.indexedDB.open(dbname, version);
+	constructor() {
+		throw new Error ("Não é possivel instanciar esta classe");
+	}
 
-				openRequest.onupgradedneeded = e => {
-					ConnectionFactory._createStores(e.target.result);
-				};
+	static getConnection() {
+		return new Promise((resolve, reject) => {
+			let openRequest = window.indexedDB.open(dbname, version);
 
-				openRequest.onsuccess = e => {
+			openRequest.onupgradedneeded = e => {
+				ConnectionFactory._createStores(e.target.result);
+			};
 
-					if(!connection) { 
-						
-						connection = e.target.result;
-						
-						close = connection.close.bind(connection);
-						
-						connection.close = function() {
-							throw new Error("Voce nao pode fechar diretamente a conexao")
-						}
+			openRequest.onsuccess = e => {
 
+				if(!connection) { 
+
+					connection = e.target.result;
+
+					close = connection.close.bind(connection);
+
+					connection.close = function() {
+						throw new Error("Voce nao pode fechar diretamente a conexao")
 					}
 
-					resolve(connection);
+				}
 
-				};
+				resolve(connection);
 
-				openRequest.onerror = e => {
-					console.log(e.target.error);
-					reject(e.target.error.name);
-				};
+			};
 
-			});
-		}
+			openRequest.onerror = e => {
+				console.log(e.target.error);
+				reject(e.target.error.name);
+			};
 
-		static _createStores(connection) {
-			stores.forEach(store => {
-
-				if (connection.objectStoreNames.contains(store)) 
-					connection.deleteObjectStore(store);
-
-				connection.createObjectStore(store, { autoIncrement: true});
-
-			});
-		}
-
-		static closeConnection(){
-			if (connection){
-				close();
-				connection = null;
-			}
-		}
-
+		});
 	}
-})(); // funcao anonima auto executavel
+
+	static _createStores(connection) {
+		stores.forEach(store => {
+
+			if (connection.objectStoreNames.contains(store)) 
+				connection.deleteObjectStore(store);
+
+			connection.createObjectStore(store, { autoIncrement: true});
+
+		});
+	}
+
+	static closeConnection(){
+		if (connection){
+			close();
+			connection = null;
+		}
+	}
+
+}
